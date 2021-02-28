@@ -32,6 +32,10 @@ var itemLabels = [];
 //array of item location
 var itemLocations =[];
 
+// Correct/Wrong text label position
+var correctWrongLabelX = WIDTH/2;
+var correctWrongLabelY = 20;
+
 // variable that is a draw function 
 var drawFunction;
 
@@ -124,8 +128,10 @@ drawLearn = function() {
 drawGame = function() {
 	image(images[2], backX, backY);
 	//image of item
-	image(images[13], itemImageX, itemImageY);
+	image(images[11], itemImageX, itemImageY);
 	//label of item
+	fill(0);
+	textSize(30);
 	loadItemLabels()
 	text(itemLabels[6], itemLabelX, itemLabelY);
 }
@@ -133,11 +139,21 @@ drawGame = function() {
 //draw Correct
 drawCorrect = function() {
 	image(images[3], backX, backY);
+
+	//label text in green
+	textSize(60);
+	fill(0,128,0);
+	text("Correct! You Got It!", correctWrongLabelX, correctWrongLabelY)
 }
 
 //draw Wrong
 drawWrong = function() {
 	image(images[4], backX, backY);
+
+	//label text in red 
+	textSize(60);
+	fill(202,0,42);
+	text("Correct! You Got It!", correctWrongLabelX, correctWrongLabelY)
 }
 
 //draw View
@@ -160,13 +176,29 @@ function keyTyped() {
 		}
 		//To Game
 		else if ( key === "p") {
-			drawFunction = drawGame;
+			drawFunction = drawCorrect;
 		}
 	}
 	//From Learn
 	else if ( drawFunction === drawLearn) {
 		//To Game
 		if ( key === "p") {
+			drawFunction = drawGame;
+		}
+	}
+
+	//From View 
+	else if ( drawFunction === drawView) {
+		//To Game
+		if ( key === "p") {
+			drawFunction = drawGame;
+		}
+	}
+
+	//From Correct
+	else if ( drawFunction === drawCorrect) {
+		//To Game
+		if ( key === "n") {
 			drawFunction = drawGame;
 		}
 	}
