@@ -29,8 +29,11 @@ var itemLabelY = itemImageY - lineHeight;
 // array of item labels 
 var itemLabels = [];
 
+//array of shuffled items
+var shuffledItems = [];
+
 //array of item location
-var itemLocations =[];
+var itemLocations = [];
 
 // Correct/Wrong text label position
 var correctWrongLabelX = 502;
@@ -38,6 +41,12 @@ var correctWrongLabelY = 65;
 
 // index variable for keeping track of item
 var itemIndex = 0;
+
+// index variable for keeping track of image
+var imageIndex = 0;
+
+// index variable for keeping track of image
+var labelIndex = 0;
 
 // variable that is a draw function 
 var drawFunction;
@@ -77,6 +86,7 @@ function setup() {
 
   //set to Opening for starup
   drawFunction = drawOpening;
+
  }
 
 // Set background color to white and call state machine function
@@ -101,6 +111,13 @@ function loadItemLabels() {
 	itemLabels[9] = "Paper Bag"
 	itemLabels[10] = "Water Bottle"
 }
+//load shuffled array of items
+function loadShuffledItems() {
+	loadItemLabels();
+  	shuffledItems = shuffle(itemLabels);
+  	// To see shuffled list 
+  	print(shuffledItems);
+}
 
 //load item locations array
 function loadItemLocations() {
@@ -117,211 +134,282 @@ function loadItemLocations() {
 	itemLocations[10] = ""
 }
 
+function findImageLabel() {
+	//if item is balloon
+	if (shuffledItems[itemIndex] === "Balloon") {
+		imageIndex = 7;
+		labelIndex = 0;
+	}
+	//if item is banana peel
+	else if (shuffledItems[itemIndex] === "Banana Peel") {
+		imageIndex = 8;
+		labelIndex = 1;
+	}
+	//if item is Candy Wrapper
+	else if (shuffledItems[itemIndex] === "Candy Wrapper") {
+		imageIndex = 9;
+		labelIndex = 2;
+	}
+	//if item is Cereal Box
+	else if (shuffledItems[itemIndex] === "Cereal Box") {
+		imageIndex = 10;
+		labelIndex = 3;
+	}
+	//if item is Compostable Box
+	else if (shuffledItems[itemIndex] === "Compostable Box") {
+		imageIndex = 11;
+		labelIndex = 4;
+	}
+	//if item is Dry Leaves
+	else if (shuffledItems[itemIndex] === "Dry Leaves") {
+		imageIndex = 12;
+		labelIndex = 5;
+	}
+	//if item is Filled Soup Can
+	else if (shuffledItems[itemIndex] === "Filled Soup Can") {
+		imageIndex = 13;
+		labelIndex = 6;
+	}
+	//if item is Lego
+	else if (shuffledItems[itemIndex] === "Lego") {
+		imageIndex = 14;
+		labelIndex = 7;
+	}
+	//if item is Milk Carton
+	else if (shuffledItems[itemIndex] === "Milk Carton") {
+		imageIndex = 15;
+		labelIndex = 8;
+	}
+	//if item is Paper Bag
+	else if (shuffledItems[itemIndex] === "Paper Bag") {
+		imageIndex = 16;
+		labelIndex = 9;
+	}
+	//if item is Water Bottle
+	else if (shuffledItems[itemIndex] === "Water Bottle") {
+		imageIndex = 17;
+		labelIndex = 10;
+	}
+}
+
 function correction() {
 	//If item is balloon
-		if ( itemIndex === 0) {
-			//incorrect
-			if ( key === "1") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//correct store correct location to itemLocation
-			else if (key === "3") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Landfill"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
+	if ( labelIndex === 0) {
+		//incorrect
+		if ( key === "1") {
+			drawFunction = drawWrong;
 		}
-		//If item is banan peel
-		else if ( itemIndex === 1) {
-			// correct store correct location to itemLocation
-			if ( key === "1") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Compost"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
 		}
-		//If item is candy wrapper
-		else if ( itemIndex === 2) {
-			// correct store correct location to itemLocation
-			if ( key === "3") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Landfill"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
+		//correct store correct location to itemLocation
+		else if (key === "3") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Landfill"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
 		}
-		//If item is cereal box
-		else if ( itemIndex === 3) {
-			// correct store correct location to itemLocation
-			if ( key === "2") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Recycle"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+	}
+
+	//If item is banan peel
+	else if ( labelIndex === 1) {
+		// correct store correct location to itemLocation
+		if ( key === "1") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Compost"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
 		}
-		//If item is Compostable Box
-		else if ( itemIndex === 4) {
-			// correct store correct location to itemLocation
-			if ( key === "1") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Compost"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
 		}
-		//If item is dry leaves
-		else if ( itemIndex === 5) {
-			// correct store correct location to itemLocation
-			if ( key === "1") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Compost"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+		//incorrect
+		else if (key === "3") {
+			drawFunction = drawWrong;
 		}
-		//If item is filled soup can
-		else if ( itemIndex === 6) {
-			// correct store correct location to itemLocation
-			if ( key === "3") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Landfill"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
+	}
+
+	//If item is candy wrapper
+	else if ( labelIndex === 2) {
+		// correct store correct location to itemLocation
+		if ( key === "3") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Landfill"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
 		}
-		//If item is Lego
-		else if ( itemIndex === 7) {
-			// correct store correct location to itemLocation
-			if ( key === "3") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Landfill"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "2") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
 		}
-		//If item is Milk Carton
-		else if ( itemIndex === 8) {
-			// correct store correct location to itemLocation
-			if ( key === "2") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Recycle"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
 		}
-		//If item is paper bag
-		else if ( itemIndex === 9) {
-			// correct store correct location to itemLocation
-			if ( key === "2") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Recycle"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+	}
+
+	//If item is cereal box
+	else if ( labelIndex === 3) {
+		// correct store correct location to itemLocation
+		if ( key === "2") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Recycle"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
 		}
-		//If item is water bottle 
-		else if ( itemIndex === 10) {
-			// correct store correct location to itemLocation
-			if ( key === "2") {
-				drawFunction = drawCorrect;
-				itemLocations[itemIndex] = "Recycle"
-				//increase itemIndex to move on to next item
-				itemIndex = itemIndex +1 
-			}
-			//incorrect
-			else if (key === "1") {
-				drawFunction = drawWrong;
-			}
-			//incorrect
-			else if (key === "3") {
-				drawFunction = drawWrong;
-			}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
 		}
+		//incorrect
+		else if (key === "3") {
+			drawFunction = drawWrong;
+		}
+	}
+
+	//If item is Compostable Box
+	else if ( labelIndex === 4) {
+		// correct store correct location to itemLocation
+		if ( key === "1") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Compost"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "3") {
+			drawFunction = drawWrong;
+		}
+	}
+
+	//If item is dry leaves
+	else if ( labelIndex === 5) {
+		// correct store correct location to itemLocation
+		if ( key === "1") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Compost"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "3") {
+			drawFunction = drawWrong;
+		}
+	}
+
+	//If item is filled soup can
+	else if ( labelIndex === 6) {
+		// correct store correct location to itemLocation
+		if ( key === "3") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Landfill"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
+		}
+	}
+
+	//If item is Lego
+	else if ( labelIndex === 7) {
+		// correct store correct location to itemLocation
+		if ( key === "3") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Landfill"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "2") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
+		}
+	}
+
+	//If item is Milk Carton
+	else if ( labelIndex === 8) {
+		// correct store correct location to itemLocation
+		if ( key === "2") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Recycle"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "3") {
+			drawFunction = drawWrong;
+		}
+	}
+
+	//If item is paper bag
+	else if ( labelIndex === 9) {
+		// correct store correct location to itemLocation
+		if ( key === "2") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Recycle"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "3") {
+			rawFunction = drawWrong;
+		}
+	}
+	
+	//If item is water bottle 
+	else if ( labelIndex === 10) {
+		// correct store correct location to itemLocation
+		if ( key === "2") {
+			drawFunction = drawCorrect;
+			itemLocations[itemIndex] = "Recycle"
+			//increase itemIndex to move on to next item
+			itemIndex = itemIndex +1 
+		}
+		//incorrect
+		else if (key === "1") {
+			drawFunction = drawWrong;
+		}
+		//incorrect
+		else if (key === "3") {
+			drawFunction = drawWrong;
+		}
+	}
 }
 
 // draw Opening
 drawOpening = function() {
 	// image of opening background
 	image(images[0], backX, backY);
+
+	//Randomize list of items 
+	loadShuffledItems();
 }
 
 //draw Learn
@@ -336,12 +424,14 @@ drawGame = function() {
 	image(images[2], backX, backY);
 
 	//image of item
-	image(images[itemIndex + 7], itemImageX, itemImageY);
+	findImageLabel();
+	image(images[imageIndex], itemImageX, itemImageY);
+
 	//label of item
 	fill(0);
 	textSize(30);
 	loadItemLabels()
-	text(itemLabels[itemIndex], itemLabelX, itemLabelY);
+	text(itemLabels[labelIndex], itemLabelX, itemLabelY);
 }
 
 //draw Correct
@@ -361,7 +451,13 @@ drawWrong = function() {
 	image(images[4], backX, backY);
 
 	//image of item
-	image(images[itemIndex + 7], itemImageX, itemImageY);
+	image(images[imageIndex], itemImageX, itemImageY);
+
+	//label of item
+	fill(0);
+	textSize(30);
+	loadItemLabels()
+	text(itemLabels[labelIndex], itemLabelX, itemLabelY);
 
 	//label text in red 
 	textSize(60);
