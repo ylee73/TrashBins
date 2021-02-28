@@ -33,8 +33,11 @@ var itemLabels = [];
 var itemLocations =[];
 
 // Correct/Wrong text label position
-var correctWrongLabelX = WIDTH/2;
-var correctWrongLabelY = 20;
+var correctWrongLabelX = 502;
+var correctWrongLabelY = 65;
+
+// index variable for keeping track of item
+var itemIndex = 0;
 
 // variable that is a draw function 
 var drawFunction;
@@ -114,30 +117,236 @@ function loadItemLocations() {
 	itemLocations[10] = ""
 }
 
+function correction() {
+	//If item is balloon
+		if ( itemIndex === 0) {
+			//incorrect
+			if ( key === "1") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//correct store correct location to itemLocation
+			else if (key === "3") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Landfill"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+		}
+		//If item is banan peel
+		else if ( itemIndex === 1) {
+			// correct store correct location to itemLocation
+			if ( key === "1") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Compost"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is candy wrapper
+		else if ( itemIndex === 2) {
+			// correct store correct location to itemLocation
+			if ( key === "3") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Landfill"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is cereal box
+		else if ( itemIndex === 3) {
+			// correct store correct location to itemLocation
+			if ( key === "2") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Recycle"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is Compostable Box
+		else if ( itemIndex === 4) {
+			// correct store correct location to itemLocation
+			if ( key === "1") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Compost"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is dry leaves
+		else if ( itemIndex === 5) {
+			// correct store correct location to itemLocation
+			if ( key === "1") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Compost"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is filled soup can
+		else if ( itemIndex === 6) {
+			// correct store correct location to itemLocation
+			if ( key === "3") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Landfill"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is Lego
+		else if ( itemIndex === 7) {
+			// correct store correct location to itemLocation
+			if ( key === "3") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Landfill"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "2") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is Milk Carton
+		else if ( itemIndex === 8) {
+			// correct store correct location to itemLocation
+			if ( key === "2") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Recycle"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is paper bag
+		else if ( itemIndex === 9) {
+			// correct store correct location to itemLocation
+			if ( key === "2") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Recycle"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+		//If item is water bottle 
+		else if ( itemIndex === 10) {
+			// correct store correct location to itemLocation
+			if ( key === "2") {
+				drawFunction = drawCorrect;
+				itemLocations[itemIndex] = "Recycle"
+				//increase itemIndex to move on to next item
+				itemIndex = itemIndex +1 
+			}
+			//incorrect
+			else if (key === "1") {
+				drawFunction = drawWrong;
+			}
+			//incorrect
+			else if (key === "3") {
+				drawFunction = drawWrong;
+			}
+		}
+}
+
 // draw Opening
 drawOpening = function() {
+	// image of opening background
 	image(images[0], backX, backY);
 }
 
 //draw Learn
 drawLearn = function() {
+	// image of learn background
 	image(images[1], backX, backY);
 }
 
 //draw Game
 drawGame = function() {
+	// image of game background
 	image(images[2], backX, backY);
+
 	//image of item
-	image(images[11], itemImageX, itemImageY);
+	image(images[itemIndex + 7], itemImageX, itemImageY);
 	//label of item
 	fill(0);
 	textSize(30);
 	loadItemLabels()
-	text(itemLabels[6], itemLabelX, itemLabelY);
+	text(itemLabels[itemIndex], itemLabelX, itemLabelY);
 }
 
 //draw Correct
 drawCorrect = function() {
+	// image of correct background
 	image(images[3], backX, backY);
 
 	//label text in green
@@ -148,12 +357,16 @@ drawCorrect = function() {
 
 //draw Wrong
 drawWrong = function() {
+	// image of wrong background
 	image(images[4], backX, backY);
+
+	//image of item
+	image(images[itemIndex + 7], itemImageX, itemImageY);
 
 	//label text in red 
 	textSize(60);
 	fill(202,0,42);
-	text("Correct! You Got It!", correctWrongLabelX, correctWrongLabelY)
+	text("Wrong! Please Try Again", correctWrongLabelX, correctWrongLabelY)
 }
 
 //draw View
@@ -176,7 +389,7 @@ function keyTyped() {
 		}
 		//To Game
 		else if ( key === "p") {
-			drawFunction = drawCorrect;
+			drawFunction = drawGame;
 		}
 	}
 	//From Learn
@@ -185,6 +398,19 @@ function keyTyped() {
 		if ( key === "p") {
 			drawFunction = drawGame;
 		}
+	}
+
+	//From Game
+	else if ( drawFunction === drawGame) {
+		//To learn
+		if ( key === "l") {
+			drawFunction = drawLearn;
+		}
+		// To view
+		else if ( key === "v") {
+			drawFunction = drawView;
+		}
+		correction();
 	}
 
 	//From View 
@@ -197,9 +423,28 @@ function keyTyped() {
 
 	//From Correct
 	else if ( drawFunction === drawCorrect) {
-		//To Game
 		if ( key === "n") {
-			drawFunction = drawGame;
+			// When no more item is left
+			if (itemIndex === 11) {
+				drawFunction = drawEnding;
+			}
+			// continue to game
+			else {
+				drawFunction = drawGame;
+			}
 		}
+	}
+
+	//From Wrong
+	else if ( drawFunction === drawWrong) {
+		//To learn
+		if ( key === "l") {
+			drawFunction = drawLearn;
+		}
+		// To view
+		else if ( key === "v") {
+			drawFunction = drawView;
+		}
+		correction();
 	}
 }
