@@ -1,13 +1,16 @@
 /***************************************************************************
-	Project name: Rooms of My House
+	Project name: Trash Bins
 		by Ashley Lee
-	Overview: This is Ashley Lee's rooms of my house p5.js that shows navigation structure using the keyboard between 9 rooms.
+	Overview: This is Ashley Lee's p5.js code for her Trash Bin project. 
+	The Trash Bin project is an interactive educational game targeted towards children 
+	to educate them about the different types of trash bins and who types of items
+	go inside each bin. 
 	________________________________________________________________________
 	Note: 
-	(1) this code translates Ashley's dream house that was made in XD
-	(2) use left,right,down, and up keyboard button to navigate between rooms
-	(3) each state is a different room which has a label of the room and the 
-	navigation insturctions.
+	(1) The user will use their keybaord to navigate through the different states 
+	and play the game.
+	(2) The array list of items will be generated randomly per game
+	(3) The correct/ wrong label will appear for 5 seconds. 
 ******************************************************************************/
 
 // array of images
@@ -23,7 +26,7 @@ var itemImageY = 435;
 
 //item image placing
 var lineHeight = 30;
-var itemLabelX = itemImageX + 115;
+var itemLabelX = itemImageX + 110;
 var itemLabelY = itemImageY - lineHeight;
 
 // array of item labels 
@@ -42,11 +45,14 @@ var correctWrongLabelY = 65;
 // index variable for keeping track of item
 var itemIndex = 0;
 
-// index variable for keeping track of image
+// index variable for keeping track of image 
 var imageIndex = 0;
 
 // index variable for keeping track of image
 var labelIndex = 0;
+
+// variable for timer
+var labelTimer;
 
 // variable that is a draw function 
 var drawFunction;
@@ -83,10 +89,11 @@ function setup() {
   textSize(30);
   textStyle(BOLD);
 
+  //setup for timer for wrong/correct label
+  labelTimer = new Timer(5000);
 
   //set to Opening for starup
   drawFunction = drawOpening;
-
  }
 
 // Set background color to white and call state machine function
@@ -115,8 +122,6 @@ function loadItemLabels() {
 function loadShuffledItems() {
 	loadItemLabels();
   	shuffledItems = shuffle(itemLabels);
-  	// To see shuffled list 
-  	print(shuffledItems);
 }
 
 //load item locations array
@@ -209,6 +214,7 @@ function correction() {
 			itemLocations[itemIndex] = "Landfill"
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 
+			labelTimer.start();
 		}
 	}
 
@@ -220,6 +226,7 @@ function correction() {
 			itemLocations[itemIndex] = "Compost"
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "2") {
@@ -239,6 +246,7 @@ function correction() {
 			itemLocations[itemIndex] = "Landfill"
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "2") {
@@ -258,6 +266,7 @@ function correction() {
 			itemLocations[itemIndex] = "Recycle"
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "1") {
@@ -274,9 +283,10 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "1") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Compost"
+			itemLocations[itemIndex] = "Compost";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "2") {
@@ -293,9 +303,11 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "1") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Compost"
+			itemLocations[itemIndex] = "Compost";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
+			labelTimer.start();
+			
 		}
 		//incorrect
 		else if (key === "2") {
@@ -312,9 +324,10 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "3") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Landfill"
+			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "2") {
@@ -331,9 +344,10 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "3") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Landfill"
+			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "2") {
@@ -350,9 +364,10 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "2") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Recycle"
+			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "1") {
@@ -369,9 +384,10 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "2") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Recycle"
+			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "1") {
@@ -388,9 +404,10 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "2") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Recycle"
+			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1;
+			labelTimer.start();
 		}
 		//incorrect
 		else if (key === "1") {
@@ -401,6 +418,10 @@ function correction() {
 			drawFunction = drawWrong;
 		}
 	}
+}
+function resetTimer() {
+	labelTimer = new Timer(5000);
+	labelTimer.start();
 }
 
 // draw Opening
@@ -442,7 +463,17 @@ drawCorrect = function() {
 	//label text in green
 	textSize(60);
 	fill(0,128,0);
-	text("Correct! You Got It!", correctWrongLabelX, correctWrongLabelY)
+
+	//timer for correct label
+	//print(labelTimer.getRemainingTime());
+	if ( labelTimer.expired() ) {
+		text("Move On!", correctWrongLabelX, correctWrongLabelY);
+	}
+	else {
+		text("Correct! You Got It!", correctWrongLabelX, correctWrongLabelY);
+	}
+	resetTimer();
+
 }
 
 //draw Wrong
@@ -456,18 +487,61 @@ drawWrong = function() {
 	//label of item
 	fill(0);
 	textSize(30);
-	loadItemLabels()
+	loadItemLabels();
 	text(itemLabels[labelIndex], itemLabelX, itemLabelY);
 
 	//label text in red 
 	textSize(60);
 	fill(202,0,42);
-	text("Wrong! Please Try Again", correctWrongLabelX, correctWrongLabelY)
+	//timer for wrong label
+	labelTimer.start;
+	if ( labelTimer.expired() ) {
+		text("Try again", correctWrongLabelX, correctWrongLabelY);
+	}
+	else {
+		text("Wrong! Please Try Again", correctWrongLabelX, correctWrongLabelY);
+	}
 }
 
 //draw View
 drawView = function() {
 	image(images[5], backX, backY);
+	// setup item text size.
+	textSize(15);
+	let landfillIndex = 0;
+	let recycleIndex = 0;
+	let compostIndex = 0;
+
+
+	for ( let i = 0; i < itemLocations.length; i++ ) {
+		if (itemLocations[i] === "Landfill") {
+			if (landfillIndex === 0) {
+				text(shuffledItems[i], 900, 160);
+			}
+			else {
+				text(shuffledItems[i], 900, 160 + (landfillIndex * 18));
+			}
+			landfillIndex = landfillIndex +1
+		}
+		else if (itemLocations[i] === "Recycle") {
+			if (recycleIndex === 0) {
+				text(shuffledItems[i], 400, 450);
+			}
+			else {
+				text(shuffledItems[i], 400, 450 + (recycleIndex * 18));
+			}
+			recycleIndex = recycleIndex +1
+		}
+		else if (itemLocations[i] === "Compost") {
+			if (compostIndex === 0) {
+				text(shuffledItems[i], 400, 160);
+			}
+			else {
+				text(shuffledItems[i], 400, 160 + (compostIndex * 18));
+			}
+			compostIndex = compostIndex +1
+		}
+	}
 }
 
 //draw Ending
