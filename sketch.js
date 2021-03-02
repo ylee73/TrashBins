@@ -211,9 +211,9 @@ function correction() {
 		//correct store correct location to itemLocation
 		else if (key === "3") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Landfill"
+			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
 			labelTimer.start();
 		}
 	}
@@ -223,9 +223,9 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "1") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Compost"
+			itemLocations[itemIndex] = "Compost";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
 			labelTimer.start();
 		}
 		//incorrect
@@ -243,9 +243,9 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "3") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Landfill"
+			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
 			labelTimer.start();
 		}
 		//incorrect
@@ -263,9 +263,9 @@ function correction() {
 		// correct store correct location to itemLocation
 		if ( key === "2") {
 			drawFunction = drawCorrect;
-			itemLocations[itemIndex] = "Recycle"
+			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
-			itemIndex = itemIndex +1 
+			itemIndex = itemIndex +1 ;
 			labelTimer.start();
 		}
 		//incorrect
@@ -419,10 +419,6 @@ function correction() {
 		}
 	}
 }
-function resetTimer() {
-	labelTimer = new Timer(5000);
-	labelTimer.start();
-}
 
 // draw Opening
 drawOpening = function() {
@@ -464,16 +460,18 @@ drawCorrect = function() {
 	textSize(60);
 	fill(0,128,0);
 
-	//timer for correct label
-	//print(labelTimer.getRemainingTime());
+	//timer to move on to next item in 5 seconds
 	if ( labelTimer.expired() ) {
-		text("Move On!", correctWrongLabelX, correctWrongLabelY);
+		if (itemIndex === 11) {
+			drawFunction = drawEnding;
+		}
+		else {
+			drawFunction = drawGame; 
+		}
 	}
 	else {
-		text("Correct! You Got It!", correctWrongLabelX, correctWrongLabelY);
+		text("Correct! You Got It! Move on!", correctWrongLabelX, correctWrongLabelY);
 	}
-	resetTimer();
-
 }
 
 //draw Wrong
@@ -493,14 +491,7 @@ drawWrong = function() {
 	//label text in red 
 	textSize(60);
 	fill(202,0,42);
-	//timer for wrong label
-	labelTimer.start;
-	if ( labelTimer.expired() ) {
-		text("Try again", correctWrongLabelX, correctWrongLabelY);
-	}
-	else {
-		text("Wrong! Please Try Again", correctWrongLabelX, correctWrongLabelY);
-	}
+	text("Wrong! Please Try Again", correctWrongLabelX, correctWrongLabelY);
 }
 
 //draw View
