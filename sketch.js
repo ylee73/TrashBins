@@ -26,7 +26,7 @@ var itemImageY = 435;
 
 //item image placing
 var lineHeight = 30;
-var itemLabelX = itemImageX + 110;
+var itemLabelX = itemImageX + 107;
 var itemLabelY = itemImageY - lineHeight;
 
 // array of item labels 
