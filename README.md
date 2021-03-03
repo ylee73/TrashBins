@@ -7,7 +7,7 @@
 This is Ashley Lee's trash bin state machine project using p5.js. This is an interactive educational gamer where users will sort a list of different types of trash that is usually found in one’s household to appropriate trash bins. 
 
 
-### Technical Details
+### Key Technical Details
 The preload() function will load all the images into an array that will be used in this project from the Assets folder. 
 
 The loadShuffledItem() function will shuffle the itemLabels array to create another shuffledItems array that will randomize the item list.
@@ -22,6 +22,10 @@ The findImageLabel() function identifies what the shuffledItem is and find the a
 
 The correction() function checks if the trash bin selected by the user is the appropraite trash bin for that item and saves the trash bin location for that item in the itemLocations array. This function will be used in the keyTyped() function when on the game state and the wrong state to check if the key typed by the user is correct or not. If you want to add more items, please add the appropriate code to check if the key typed is corrected or not. 
 
-### Adobe XD Link
+The p5.timer.js is used to create a timer for displaying the correct label for 5 seconds and moving on to the next state in the correct state.
 
-https://xd.adobe.com/view/cc22c623-3b94-4c57-af17-2f882fa9f91f-9971/
+The viewItems() function goes through the itemLocations array to sort the locations of each item and reveal which items are in each bin using a for loop. The bin indexes are used to format the height of the item list for each bin. 
+
+
+### Adobe XD Link
+[Link to Adobe XD](https://xd.adobe.com/view/cc22c623-3b94-4c57-af17-2f882fa9f91f-9971/)

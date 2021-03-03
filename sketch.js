@@ -10,7 +10,7 @@
 	(1) The user will use their keybaord to navigate through the different states 
 	and play the game.
 	(2) The array list of items will be generated randomly per game
-	(3) The correct/ wrong label will appear for 5 seconds. 
+	(3) The correct label will show fpr 5 seconds and move on to the next state.
 ******************************************************************************/
 
 // array of images
@@ -214,6 +214,7 @@ function correction() {
 			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 	}
@@ -226,6 +227,7 @@ function correction() {
 			itemLocations[itemIndex] = "Compost";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -246,6 +248,7 @@ function correction() {
 			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -266,6 +269,7 @@ function correction() {
 			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -286,6 +290,7 @@ function correction() {
 			itemLocations[itemIndex] = "Compost";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -306,6 +311,7 @@ function correction() {
 			itemLocations[itemIndex] = "Compost";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 			
 		}
@@ -327,6 +333,7 @@ function correction() {
 			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -347,6 +354,7 @@ function correction() {
 			itemLocations[itemIndex] = "Landfill";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -367,7 +375,9 @@ function correction() {
 			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
+
 		}
 		//incorrect
 		else if (key === "1") {
@@ -387,6 +397,7 @@ function correction() {
 			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1 ;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -407,6 +418,7 @@ function correction() {
 			itemLocations[itemIndex] = "Recycle";
 			//increase itemIndex to move on to next item
 			itemIndex = itemIndex +1;
+			//start timer when the correct bin is selected
 			labelTimer.start();
 		}
 		//incorrect
@@ -416,6 +428,52 @@ function correction() {
 		//incorrect
 		else if (key === "3") {
 			drawFunction = drawWrong;
+		}
+	}
+}
+
+//Sort the locations of each item and show the item labels in each bin
+function viewItems () {
+	//location variables for each bin 
+	let landfillX = 900;
+	let landfillY = 160;
+	let compostX = 400;
+	let compostY = 160;
+	let recycleX = 400;
+	let recycleY = 450;
+
+	//bin indexes used for sorting and organizing the layout of the bins. 
+	let landfillIndex = 0;
+	let recycleIndex = 0;
+	let compostIndex = 0;
+
+	for ( let i = 0; i < itemLocations.length; i++ ) {
+		if (itemLocations[i] === "Landfill") {
+			if (landfillIndex === 0) {
+				text(shuffledItems[i], landfillX, landfillY);
+			}
+			else {
+				text(shuffledItems[i], landfillX, landfillY + (landfillIndex * 18));
+			}
+			landfillIndex = landfillIndex +1;
+		}
+		else if (itemLocations[i] === "Recycle") {
+			if (recycleIndex === 0) {
+				text(shuffledItems[i], recycleX, recycleY);
+			}
+			else {
+				text(shuffledItems[i], recycleX, recycleY + (recycleIndex * 18));
+			}
+			recycleIndex = recycleIndex +1;
+		}
+		else if (itemLocations[i] === "Compost") {
+			if (compostIndex === 0) {
+				text(shuffledItems[i], compostX, compostY);
+			}
+			else {
+				text(shuffledItems[i], compostX, compostY + (compostIndex * 18));
+			}
+			compostIndex = compostIndex +1;
 		}
 	}
 }
@@ -499,40 +557,8 @@ drawView = function() {
 	image(images[5], backX, backY);
 	// setup item text size.
 	textSize(15);
-	let landfillIndex = 0;
-	let recycleIndex = 0;
-	let compostIndex = 0;
-
-
-	for ( let i = 0; i < itemLocations.length; i++ ) {
-		if (itemLocations[i] === "Landfill") {
-			if (landfillIndex === 0) {
-				text(shuffledItems[i], 900, 160);
-			}
-			else {
-				text(shuffledItems[i], 900, 160 + (landfillIndex * 18));
-			}
-			landfillIndex = landfillIndex +1
-		}
-		else if (itemLocations[i] === "Recycle") {
-			if (recycleIndex === 0) {
-				text(shuffledItems[i], 400, 450);
-			}
-			else {
-				text(shuffledItems[i], 400, 450 + (recycleIndex * 18));
-			}
-			recycleIndex = recycleIndex +1
-		}
-		else if (itemLocations[i] === "Compost") {
-			if (compostIndex === 0) {
-				text(shuffledItems[i], 400, 160);
-			}
-			else {
-				text(shuffledItems[i], 400, 160 + (compostIndex * 18));
-			}
-			compostIndex = compostIndex +1
-		}
-	}
+	// function that shows the different items in each bin
+	viewItems();
 }
 
 //draw Ending
@@ -571,6 +597,7 @@ function keyTyped() {
 		else if ( key === "v") {
 			drawFunction = drawView;
 		}
+		// checks if the bin selected is correct
 		correction();
 	}
 
@@ -606,6 +633,7 @@ function keyTyped() {
 		else if ( key === "v") {
 			drawFunction = drawView;
 		}
+		// checks if the bin selected is correct
 		correction();
 	}
 }
