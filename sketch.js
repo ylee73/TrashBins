@@ -26,7 +26,7 @@ var itemImageY = 435;
 
 //item image placing
 var lineHeight = 30;
-var itemLabelX = itemImageX + 105;
+var itemLabelX = itemImageX + 107;
 var itemLabelY = itemImageY - lineHeight;
 
 // array of item labels 
@@ -506,7 +506,13 @@ drawGame = function() {
 	fill(0);
 	textSize(30);
 	loadItemLabels()
-	text(itemLabels[labelIndex], itemLabelX, itemLabelY);
+	// move X position of itemLabel to the left for compostable box
+	if ( labelIndex === 4) {
+		text(itemLabels[labelIndex], itemLabelX - 4, itemLabelY);
+	}
+	else {
+		text(itemLabels[labelIndex], itemLabelX, itemLabelY);
+	}
 }
 
 //draw Correct
